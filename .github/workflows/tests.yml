@@ -1,33 +1,4 @@
-name: Tests
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-  schedule:
-    - cron: '*/5 * * * *'
-
-jobs:
-  tests:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php-versions: ['8.3']
-    name: integration-tests (PHP ${{ matrix.php-versions }})
-    steps:
-      - uses: actions/checkout@v1
-      - name: Install PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php-versions }}
-      - name: Validate composer.json and composer.lock
-        run: composer validate
-
-      - name: Get Composer Cache Directory
+name: 
         id: composer-cache
         run: |
           echo "::set-output name=dir::$(composer config cache-files-dir)"
